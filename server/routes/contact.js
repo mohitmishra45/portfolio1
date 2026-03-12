@@ -10,35 +10,22 @@ const MESSAGES_FILE = path.join(__dirname, '../data/messages.json');
 
 const router = express.Router();
 
-// Configure Nodemailer
-const transporter = nodemailer.createTransport({
-    service: 'gmail', // or your preferred service
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+const getTransporter = () => {
+    const user = process.env.EMAIL_USER;
+    // Gmail app passwords should not have spaces
+    const pass = process.env.EMAIL_PASS ? process.env.EMAIL_PASS.replace(/\s/g, '') : null;
 
-// Helper to read messages
-const readMessages = () => {
-    if (!fs.existsSync(MESSAGES_FILE)) return [];
-    try {
-        const data = fs.readFileSync(MESSAGES_FILE, 'utf-8');
-        return JSON.parse(data);
-    } catch (err) {
-        console.error('Error reading messages file:', err.message);
-        return [];
+    if (!user || !pass || pass === 'your_app_password_here') {
+        throw new Error('Email credentials (EMAIL_USER or EMAIL_PASS) are not configured correctly in environment variables.');
     }
+
+    return nodemailer.createTransport({
+        service: 'gmail',
+        auth: { user, pass }
+    });
 };
 
-// Helper to write messages
-const writeMessages = (messages) => {
-    try {
-        fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2), 'utf-8');
-    } catch (err) {
-        console.error('Error writing messages file:', err.message);
-    }
-};
+// ... (helpers readMessages/writeMessages remain same)
 
 // POST contact form submission
 router.post('/', async (req, res) => {
@@ -61,10 +48,13 @@ router.post('/', async (req, res) => {
         messages.push(newMessage);
         writeMessages(messages);
 
-        // 2. Send email via Nodemailer
+        // 2. Initialize transporter and check credentials
+        const transporter = getTransporter();
+
+        // 3. Send email via Nodemailer
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: process.env.RECEIVER_EMAIL,
+            to: process.env.RECEIVER_EMAIL || process.env.EMAIL_USER,
             subject: `New Portfolio Message from ${name}`,
             text: `You have received a new message from your portfolio website:
             
@@ -88,24 +78,18 @@ Message: ${message}
             `
         };
 
-        // If credentials aren't set yet, don't try to send (will fail)
-        if (process.env.EMAIL_PASS && process.env.EMAIL_PASS !== 'your_app_password_here') {
-            try {
-                await transporter.sendMail(mailOptions);
-                console.log(`📩 email sent to ${process.env.RECEIVER_EMAIL} from ${name}`);
-            } catch (mailErr) {
-                console.error('❌ Nodemailer Error:', mailErr.message);
-                throw new Error(`Email delivery failed: ${mailErr.message}`);
-            }
-        } else {
-            console.warn('⚠️ Email not sent: Credentials not configured in .env');
-            // Depending on preference, we could also throw here to alert the user
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log(`📩 email sent to ${process.env.RECEIVER_EMAIL || process.env.EMAIL_USER} from ${name}`);
+        } catch (mailErr) {
+            console.error('❌ Nodemailer Error:', mailErr.message);
+            throw new Error(`Email delivery failed: ${mailErr.message}`);
         }
 
         res.status(201).json({ message: 'Message sent successfully!', data: newMessage });
     } catch (err) {
         console.error('Contact form error:', err.message);
-        // If email failed but it's a critical error for the user, return 500
+        // Explicitly return the error message so the user knows what's wrong
         res.status(500).json({ 
             error: err.message || 'Failed to process contact message.' 
         });
