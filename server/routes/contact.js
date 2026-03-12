@@ -25,7 +25,31 @@ const getTransporter = () => {
     });
 };
 
-// ... (helpers readMessages/writeMessages remain same)
+// Helper to read messages
+const readMessages = () => {
+    if (!fs.existsSync(MESSAGES_FILE)) return [];
+    try {
+        const data = fs.readFileSync(MESSAGES_FILE, 'utf-8');
+        return JSON.parse(data);
+    } catch (err) {
+        console.error('Error reading messages file:', err.message);
+        return [];
+    }
+};
+
+// Helper to write messages
+const writeMessages = (messages) => {
+    try {
+        // Ensure data directory exists
+        const dataDir = path.dirname(MESSAGES_FILE);
+        if (!fs.existsSync(dataDir)) {
+            fs.mkdirSync(dataDir, { recursive: true });
+        }
+        fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2), 'utf-8');
+    } catch (err) {
+        console.error('Error writing messages file:', err.message);
+    }
+};
 
 // POST contact form submission
 router.post('/', async (req, res) => {
