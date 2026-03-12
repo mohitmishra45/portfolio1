@@ -93,7 +93,7 @@ const Hero = ({ data }) => {
                             {/* Main Image Container */}
                             <div className="relative w-full h-full rounded-full p-2 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 backdrop-blur-sm border border-emerald-500/30 overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.2)]">
                                 <img 
-                                    src={data?.hero?.profileImage || "/assets/images/profile.png"} 
+                                    src={data?.hero?.profileImage || "/assets/images/profile.jpg"} 
                                     alt={data?.name} 
                                     className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700 ease-in-out scale-110 hover:scale-100"
                                     loading="eager"
