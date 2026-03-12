@@ -10,7 +10,9 @@
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "client/dist" }
+      "config": {
+        "distDir": "client/dist"
+      }
     },
     {
       "src": "server/server.js",
