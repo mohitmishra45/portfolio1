@@ -116,9 +116,9 @@ const CodingProfile = ({ data, liveStats }) => {
                             </div>
                         </div>
                         <div className="flex justify-center gap-4 mt-4 text-sm">
-                            <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-400 inline-block"></span><span className="text-gray-300">Easy <span className="text-white font-bold">{data?.leetcode?.easy || 0}</span></span></div>
-                            <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span><span className="text-gray-300">Med <span className="text-white font-bold">{data?.leetcode?.med || 0}</span></span></div>
-                            <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-400 inline-block"></span><span className="text-gray-300">Hard <span className="text-white font-bold">{data?.leetcode?.hard || 0}</span></span></div>
+                            <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-400 inline-block"></span><span className="text-secondary">Easy <span className="text-primary font-bold">{data?.leetcode?.easy || 0}</span></span></div>
+                            <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span><span className="text-secondary">Med <span className="text-primary font-bold">{data?.leetcode?.med || 0}</span></span></div>
+                            <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-400 inline-block"></span><span className="text-secondary">Hard <span className="text-primary font-bold">{data?.leetcode?.hard || 0}</span></span></div>
                         </div>
                         <DownloadCSVButton platform="leetcode" label="Download Questions (CSV)" />
                     </motion.div>

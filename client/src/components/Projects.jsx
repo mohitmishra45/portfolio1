@@ -52,7 +52,7 @@ const Projects = ({ data }) => {
                     <button
                         onClick={prevProject}
                         disabled={currentIndex === 0}
-                        className={`absolute -left-5 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--bg-secondary)] text-primary border border-white/10 transition-all shadow-lg shadow-black/20 ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-70 hover:opacity-100 md:opacity-0 md:group-hover:opacity-100'}`}
+                        className={`absolute -left-2 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--bg-secondary)] text-primary border border-white/10 transition-all shadow-lg shadow-black/20 ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-90 md:group-hover:opacity-100'}`}
                     >
                         <i className="fas fa-chevron-left text-sm md:text-base"></i>
                     </button>
@@ -96,7 +96,7 @@ const Projects = ({ data }) => {
                                         </div>
 
                                         {/* Lower Half: Title, Details & Tech Stack */}
-                                        <div className="flex-1 p-6 flex flex-col relative z-10 bg-[var(--bg-secondary)] group-hover/card:bg-[var(--bg-primary)] transition-colors duration-500">
+                                        <div className="flex-1 p-6 flex flex-col relative z-10 group-hover/card:bg-white/5 transition-colors duration-500">
                                             <div className="mb-4">
                                                 <h3 className="text-xl md:text-2xl font-bold text-primary leading-tight mb-2 group-hover/card:text-emerald-400 transition-colors">
                                                     {project.title}
@@ -146,7 +146,7 @@ const Projects = ({ data }) => {
                     <button
                         onClick={nextProject}
                         disabled={currentIndex + cardsVisible >= projects.length}
-                        className={`absolute -right-5 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--bg-secondary)] text-primary border border-white/10 transition-all shadow-lg shadow-black/20 ${currentIndex + cardsVisible >= projects.length ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-70 hover:opacity-100 md:opacity-0 md:group-hover:opacity-100'}`}
+                        className={`absolute -right-2 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--bg-secondary)] text-primary border border-white/10 transition-all shadow-lg shadow-black/20 ${currentIndex + cardsVisible >= projects.length ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-90 md:group-hover:opacity-100'}`}
                     >
                         <i className="fas fa-chevron-right text-sm md:text-base"></i>
                     </button>

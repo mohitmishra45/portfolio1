@@ -176,15 +176,13 @@ const Contact = () => {
                                 </AnimatePresence>
 
                                 <motion.button
-                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     type="submit"
                                     disabled={status.submitting}
-                                    className={`relative group flex items-center justify-center gap-3 px-10 py-4 rounded-xl font-bold text-white transition-all overflow-hidden ${status.submitting ? 'opacity-70 cursor-wait' : 'hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]'
-                                        }`}
+                                    className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed group py-4 h-auto"
                                 >
-                                    <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 to-blue-600 transition-opacity duration-300 ${status.submitting ? 'opacity-50' : 'group-hover:opacity-90'}`}></div>
-                                    <span className="relative z-10 flex items-center gap-2">
+                                    <span className="relative z-10 flex items-center gap-3 text-lg">
                                         {status.submitting ? (
                                             <>
                                                 <i className="fas fa-circle-notch animate-spin"></i>
@@ -193,7 +191,7 @@ const Contact = () => {
                                         ) : (
                                             <>
                                                 Send Message
-                                                <i className="fas fa-paper-plane text-sm group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                                                <i className="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
                                             </>
                                         )}
                                     </span>

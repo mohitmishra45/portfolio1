@@ -42,11 +42,11 @@ const Hero = ({ data }) => {
                             Hello, World! I am
                         </h3>
 
-                        <h1 className="text-5xl md:text-7xl font-extrabold text-primary tracking-tight leading-none mb-4">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-primary tracking-tight leading-[1.1] mb-4">
                             {data?.name || "Mohit Kumar Mishra"}
                         </h1>
 
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 transition-all duration-300 min-h-[1.2em]">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 transition-all duration-300 min-h-[1.2em]">
                             I'm an <TypingEffect text="Aspiring Data Science Engineer" className="text-gradient" />
                         </h2>
 
