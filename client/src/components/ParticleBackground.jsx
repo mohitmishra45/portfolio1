@@ -44,8 +44,18 @@ const ParticleBackground = () => {
         for (let i = 0; i < 80; i++) particles.push(new Particle());
 
         const animateParticles = () => {
+            const isLightMode = document.body.classList.contains('light-mode');
+            const baseOpacity = isLightMode ? 0.3 : 0.08;
+            const particleOpacity = isLightMode ? 0.6 : 0.4;
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
+            particles.forEach(p => { 
+                p.update(); 
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(16,185,129,${p.opacity * particleOpacity})`;
+                ctx.fill();
+            });
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -53,7 +63,7 @@ const ParticleBackground = () => {
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < 120) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(16,185,129,${0.08 * (1 - dist / 120)})`;
+                        ctx.strokeStyle = `rgba(16,185,129,${baseOpacity * (1 - dist / 120)})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);

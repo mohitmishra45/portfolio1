@@ -8,6 +8,32 @@
    otherwise they will override Tailwind's layered utilities due to CSS cascade.
 */
 
+:root {
+    /* Dark Theme (Default) */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #0f0f1a;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --card-bg: rgba(15, 15, 25, 0.6);
+    --card-border: rgba(16, 185, 129, 0.12);
+    --navbar-bg: rgba(10, 10, 15, 0.92);
+    --accent-primary: #10b981;
+    --accent-secondary: #06b6d4;
+    --glass-shimmer: linear-gradient(135deg, rgba(16, 185, 129, 0.05), transparent 60%);
+}
+
+.light-mode {
+    /* Light Theme Overrides */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-border: rgba(16, 185, 129, 0.2);
+    --navbar-bg: rgba(248, 250, 252, 0.92);
+    --glass-shimmer: linear-gradient(135deg, rgba(16, 185, 129, 0.1), transparent 60%);
+}
+
 @layer base {
     html {
         scroll-behavior: smooth;
@@ -16,9 +42,10 @@
     body {
         font-family: 'Inter', sans-serif;
         overflow-x: hidden;
-        background: #0a0a0f;
-        color: #e2e8f0;
+        background: var(--bg-primary);
+        color: var(--text-primary);
         min-height: 100vh;
+        transition: background 0.3s ease, color 0.3s ease;
     }
 
     a {
@@ -31,11 +58,11 @@
     }
 
     ::-webkit-scrollbar-track {
-        background: #0a0a0f;
+        background: var(--bg-primary);
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #10b981;
+        background: var(--accent-primary);
         border-radius: 10px;
     }
 }
@@ -63,16 +90,16 @@
     }
 
     .navbar.scrolled {
-        background: rgba(10, 10, 15, 0.92);
+        background: var(--navbar-bg);
         backdrop-filter: blur(20px);
         border-bottom: 1px solid rgba(16, 185, 129, 0.15);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         padding: 0.5rem 0;
     }
 
     .nav-link {
         position: relative;
-        color: #94a3b8;
+        color: var(--text-secondary);
         transition: color 0.3s;
         font-weight: 500;
         font-size: 0.875rem;
@@ -92,7 +119,7 @@
 
     .nav-link:hover,
     .nav-link.active {
-        color: #fff;
+        color: var(--text-primary);
     }
 
     .nav-link:hover::after,
@@ -156,9 +183,9 @@
     }
 
     .glass-card {
-        background: rgba(15, 15, 25, 0.6);
+        background: var(--card-bg);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(16, 185, 129, 0.12);
+        border: 1px solid var(--card-border);
         /* Emerald */
         border-radius: 1rem;
         transition: all 0.4s cubic-bezier(.4, 0, .2, 1);
@@ -170,7 +197,7 @@
         position: absolute;
         inset: 0;
         border-radius: 1rem;
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), transparent 60%);
+        background: var(--glass-shimmer);
         pointer-events: none;
     }
 

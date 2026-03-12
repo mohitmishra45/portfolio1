@@ -51,7 +51,7 @@ const Skills = () => {
     const groups = skillsData;
 
     return (
-        <section id="skills" className="py-24 bg-[#07070a]">
+        <section id="skills" className="py-24 bg-[var(--bg-primary)] transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-6">
 
                 <motion.div
@@ -61,11 +61,11 @@ const Skills = () => {
                     className="text-center mb-16"
                 >
 
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
                         Technical <span className="text-emerald-400">Excellence</span>
                     </h2>
 
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                    <p className="text-secondary max-w-2xl mx-auto text-lg">
                         A specialized toolkit focused on Data Science, Machine Learning, and Modern Web Architectures.
                     </p>
 
@@ -74,7 +74,7 @@ const Skills = () => {
 
                 {/* Tabs */}
 
-                <div className="flex flex-wrap justify-center gap-3 mb-14 p-2 bg-[#11111a] border border-white/5 rounded-2xl max-w-3xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-3 mb-14 p-2 bg-[var(--bg-secondary)] border border-white/5 rounded-2xl max-w-3xl mx-auto shadow-sm">
 
                     {groups.map((group, idx) => (
 
@@ -120,13 +120,13 @@ const Skills = () => {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ delay: idx * 0.05 }}
-                                    className="p-6 rounded-2xl bg-[#11111a] border border-white/5 hover:border-emerald-500/30 transition-all group relative overflow-hidden"
+                                    className="p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--card-border)] hover:border-emerald-500/30 transition-all group relative overflow-hidden shadow-sm"
                                 >
 
 
                                     <div className="flex items-center gap-5 mb-5">
 
-                                        <div className="w-14 h-14 rounded-xl bg-[#1a1a24] border border-white/10 flex items-center justify-center text-3xl text-emerald-400 group-hover:scale-110 transition-transform">
+                                        <div className="w-14 h-14 rounded-xl bg-[var(--bg-primary)] border border-white/10 flex items-center justify-center text-3xl text-emerald-400 group-hover:scale-110 transition-transform">
 
                                             <i className={skill.icon}></i>
 
@@ -135,7 +135,7 @@ const Skills = () => {
 
                                         <div>
 
-                                            <h4 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+                                            <h4 className="text-xl font-bold text-primary group-hover:text-emerald-400 transition-colors">
 
                                                 {skill.name}
 

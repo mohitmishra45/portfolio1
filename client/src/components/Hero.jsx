@@ -42,15 +42,15 @@ const Hero = ({ data }) => {
                             Hello, World! I am
                         </h3>
 
-                        <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-none mb-4">
+                        <h1 className="text-5xl md:text-7xl font-extrabold text-primary tracking-tight leading-none mb-4">
                             {data?.name || "Mohit Kumar Mishra"}
                         </h1>
 
-                        <h2 className="text-3xl md:text-5xl font-bold text-gray-300 transition-all duration-300 min-h-[1.2em]">
+                        <h2 className="text-3xl md:text-5xl font-bold text-gray-700 dark:text-gray-300 transition-all duration-300 min-h-[1.2em]">
                             I'm an <TypingEffect text="Aspiring Data Science Engineer" className="text-gradient" />
                         </h2>
 
-                        <p className="text-gray-400 max-w-2xl mx-auto lg:mx-0 text-lg leading-relaxed mt-6">
+                        <p className="text-secondary opacity-80 max-w-2xl mx-auto lg:mx-0 text-lg leading-relaxed mt-6">
                             I build exceptional and accessible data-driven solutions. Passionate about transforming raw data into elegant, predictive, and scalable intelligent systems.
                         </p>
 
@@ -107,14 +107,14 @@ const Hero = ({ data }) => {
                             <motion.div 
                                 animate={{ y: [0, -10, 0] }}
                                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute -top-4 -right-4 w-12 h-12 bg-[#0a0a0f] border border-emerald-500/40 rounded-xl flex items-center justify-center text-emerald-400 shadow-lg"
+                                className="absolute -top-4 -right-4 w-12 h-12 bg-[var(--bg-primary)] border border-emerald-500/40 rounded-xl flex items-center justify-center text-emerald-400 shadow-lg"
                             >
                                 <i className="fas fa-brain text-xl"></i>
                             </motion.div>
                             <motion.div 
                                 animate={{ y: [0, 10, 0] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                className="absolute -bottom-4 -left-4 w-12 h-12 bg-[#0a0a0f] border border-cyan-500/40 rounded-xl flex items-center justify-center text-cyan-400 shadow-lg"
+                                className="absolute -bottom-4 -left-4 w-12 h-12 bg-[var(--bg-primary)] border border-cyan-500/40 rounded-xl flex items-center justify-center text-cyan-400 shadow-lg"
                             >
                                 <i className="fas fa-code text-xl"></i>
                             </motion.div>

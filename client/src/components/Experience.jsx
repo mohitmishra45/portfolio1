@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Experience = ({ data }) => {
     return (
-        <section id="experience" className="py-24 relative z-10 bg-white/[0.01] border-y border-white/5">
+        <section id="experience" className="py-24 relative z-10 bg-[var(--bg-primary)] border-y border-[var(--card-border)] transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -11,10 +11,10 @@ const Experience = ({ data }) => {
                     viewport={{ once: true }}
                     className="text-center mb-20"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white section-heading tracking-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold text-primary section-heading tracking-tight">
                         My <span className="text-emerald-400">Journey</span>
                     </h2>
-                    <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
+                    <p className="text-secondary mt-4 max-w-2xl mx-auto text-lg">
                         A timeline of my professional experience and education.
                     </p>
                 </motion.div>
@@ -47,19 +47,19 @@ const Experience = ({ data }) => {
                                     <div className={`glass-card p-6 w-full max-w-md hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 relative ${isEven ? 'md:items-end' : 'md:items-start'} flex flex-col`}>
 
                                         {/* Date Badge */}
-                                        <div className="inline-block px-3 py-1 mb-3 bg-[#13131f] border border-white/5 rounded-full text-emerald-400 text-xs font-bold tracking-wider">
+                                        <div className="inline-block px-3 py-1 mb-3 bg-[var(--bg-secondary)] border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-bold tracking-wider">
                                             {exp.date}
                                         </div>
 
-                                        <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                                        <h3 className="text-xl md:text-2xl font-bold text-primary mb-1">
                                             {exp.title}
                                         </h3>
 
-                                        <h4 className="text-gray-300 font-medium mb-3 text-sm md:text-base">
+                                        <h4 className="text-emerald-600 dark:text-emerald-400 font-medium mb-3 text-sm md:text-base">
                                             {exp.company}
                                         </h4>
 
-                                        <p className={`text-gray-400 text-sm leading-relaxed mb-4 whitespace-pre-line ${isEven ? 'md:text-right' : 'md:text-left'}`}>
+                                        <p className={`text-secondary text-sm leading-relaxed mb-4 whitespace-pre-line ${isEven ? 'md:text-right' : 'md:text-left'}`}>
                                             {exp.description}
                                         </p>
 

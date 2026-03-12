@@ -75,7 +75,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-24 relative z-10 bg-[#07070a] overflow-hidden">
+        <section id="contact" className="py-24 relative z-10 bg-[var(--bg-primary)] overflow-hidden transition-colors duration-300">
             {/* Animated Background Glows */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[500px] h-[500px] bg-emerald-500/10 blur-[120px] rounded-full animate-blob pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/10 blur-[120px] rounded-full animate-blob delay-4 pointer-events-none"></div>
@@ -87,11 +87,11 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white section-heading tracking-tight mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-primary section-heading tracking-tight mb-4">
                         Contact <span className="text-emerald-400">Me</span>
                     </h2>
-                    <h3 className="text-xl text-gray-300 font-medium mb-4">Get in touch</h3>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <h3 className="text-xl text-secondary font-medium mb-4">Get in touch</h3>
+                    <p className="text-secondary text-lg max-w-2xl mx-auto opacity-80">
                         Feel free to reach out if you want to collaborate, discuss a project, or just connect.
                     </p>
                 </motion.div>
@@ -105,11 +105,11 @@ const Contact = () => {
                 >
                     {/* Left Side: Contact Form */}
                     <motion.div variants={itemVariants} className="w-full lg:w-3/5">
-                        <div className="glass-card p-8 bg-[#0d0d14]/80 backdrop-blur-xl border border-white/5 rounded-3xl h-full shadow-2xl hover:border-emerald-500/30 transition-all duration-500 group">
+                        <div className="glass-card p-8 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] rounded-3xl h-full shadow-2xl hover:border-emerald-500/30 transition-all duration-500 group">
                             <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="name" className="block text-gray-400 text-sm font-medium ml-1">Name</label>
+                                        <label htmlFor="name" className="block text-secondary text-sm font-medium ml-1">Name</label>
                                         <motion.input
                                             whileFocus={{ scale: 1.01 }}
                                             type="text"
@@ -118,11 +118,11 @@ const Contact = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full bg-[#161621] border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-600"
+                                            className="w-full bg-[var(--bg-primary)] border border-[var(--card-border)] rounded-xl px-5 py-4 text-primary focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-secondary/50"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="block text-gray-400 text-sm font-medium ml-1">Email</label>
+                                        <label htmlFor="email" className="block text-secondary text-sm font-medium ml-1">Email</label>
                                         <motion.input
                                             whileFocus={{ scale: 1.01 }}
                                             type="email"
@@ -131,13 +131,13 @@ const Contact = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full bg-[#161621] border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-600"
+                                            className="w-full bg-[var(--bg-primary)] border border-[var(--card-border)] rounded-xl px-5 py-4 text-primary focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-secondary/50"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2 flex-grow">
-                                    <label htmlFor="message" className="block text-gray-400 text-sm font-medium ml-1">Message</label>
+                                    <label htmlFor="message" className="block text-secondary text-sm font-medium ml-1">Message</label>
                                     <motion.textarea
                                         whileFocus={{ scale: 1.005 }}
                                         id="message"
@@ -146,7 +146,7 @@ const Contact = () => {
                                         value={formData.message}
                                         onChange={handleChange}
                                         required
-                                        className="w-full h-44 resize-none bg-[#161621] border border-white/5 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-600"
+                                        className="w-full bg-[var(--bg-primary)] border border-[var(--card-border)] rounded-xl px-5 py-4 text-primary focus:outline-none focus:border-emerald-500/50 focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-secondary/50"
                                     ></motion.textarea>
                                 </div>
 
@@ -159,7 +159,7 @@ const Contact = () => {
                                             className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-center flex items-center justify-center gap-2 overflow-hidden"
                                         >
                                             <i className="fas fa-check-circle"></i>
-                                            <span>Message sent successfully! I'll be in touch.</span>
+                                            <span>Message sent successfully!</span>
                                         </motion.div>
                                     )}
                                     {status.error && (
@@ -204,8 +204,8 @@ const Contact = () => {
 
                     {/* Right Side: Contact Info */}
                     <motion.div variants={itemVariants} className="w-full lg:w-2/5 flex flex-col gap-6">
-                        <div className="glass-card p-8 bg-[#0d0d14]/80 backdrop-blur-xl border border-white/5 rounded-3xl flex-grow shadow-2xl hover:border-blue-500/30 transition-all duration-500">
-                            <h4 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                        <div className="glass-card p-8 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] rounded-3xl flex-grow shadow-2xl hover:border-blue-500/30 transition-all duration-500">
+                            <h4 className="text-xl font-bold text-primary mb-8 flex items-center gap-3">
                                 <span className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
                                     <i className="fas fa-headset text-sm"></i>
                                 </span>
@@ -215,26 +215,26 @@ const Contact = () => {
                             <div className="space-y-6">
                                 <motion.div whileHover={{ x: 5 }} className="group">
                                     <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-2 ml-1">Email</p>
-                                    <a href="mailto:mohitmishra9707@gmail.com" className="flex items-center gap-4 bg-[#161621] border border-white/5 p-4 rounded-2xl group-hover:border-emerald-500/30 transition-all">
+                                    <a href="mailto:mohitmishra9707@gmail.com" className="flex items-center gap-4 bg-[var(--bg-primary)] border border-[var(--card-border)] p-4 rounded-2xl group-hover:border-emerald-500/30 transition-all">
                                         <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                                             <i className="fas fa-envelope"></i>
                                         </div>
-                                        <span className="text-gray-300 font-medium group-hover:text-white transition-colors">mohitmishra9707@gmail.com</span>
+                                        <span className="text-secondary font-medium group-hover:text-primary transition-colors">mohitmishra9707@gmail.com</span>
                                     </a>
                                 </motion.div>
 
                                 <motion.div whileHover={{ x: 5 }} className="group">
                                     <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-2 ml-1">Based In</p>
-                                    <div className="flex items-center gap-4 bg-[#161621] border border-white/5 p-4 rounded-2xl group-hover:border-blue-500/30 transition-all">
+                                    <div className="flex items-center gap-4 bg-[var(--bg-primary)] border border-[var(--card-border)] p-4 rounded-2xl group-hover:border-blue-500/30 transition-all">
                                         <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400">
                                             <i className="fas fa-map-marker-alt"></i>
                                         </div>
-                                        <span className="text-gray-300 font-medium group-hover:text-white transition-colors">Odisha, India</span>
+                                        <span className="text-secondary font-medium group-hover:text-primary transition-colors">Punjab, India</span>
                                     </div>
                                 </motion.div>
                             </div>
 
-                            <div className="mt-10 pt-8 border-t border-white/5">
+                            <div className="mt-10 pt-8 border-t border-[var(--card-border)]">
                                 <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mb-4 ml-1">Digital Footprint</p>
                                 <div className="flex gap-4">
                                     {[
@@ -250,7 +250,7 @@ const Contact = () => {
                                             rel="noreferrer"
                                             whileHover={{ y: -5, scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
-                                            className={`w-12 h-12 rounded-xl bg-[#161621] border border-white/5 flex items-center justify-center transition-all hover:bg-[#1a1a29] hover:border-white/20 social-icon-${social.icon}`}
+                                            className={`w-12 h-12 rounded-xl bg-[var(--bg-primary)] border border-[var(--card-border)] flex items-center justify-center transition-all hover:bg-[var(--bg-secondary)] hover:border-emerald-500/30 social-icon-${social.icon}`}
                                         >
                                             <i className={`fab fa-${social.icon} ${social.color} brightness-90 group-hover:brightness-110`}></i>
                                         </motion.a>
@@ -264,7 +264,7 @@ const Contact = () => {
                             whileTap={{ scale: 0.98 }}
                             href="/assets/CV.pdf"
                             download="Mohit_Kumar_Mishra_CV.pdf"
-                            className="w-full py-5 bg-[#161621] border border-white/5 hover:border-emerald-500/30 text-white rounded-3xl flex items-center justify-center gap-3 font-bold transition-all shadow-xl group overflow-hidden relative"
+                            className="w-full py-5 bg-[var(--bg-primary)] border border-[var(--card-border)] hover:border-emerald-500/30 text-primary rounded-3xl flex items-center justify-center gap-3 font-bold transition-all shadow-xl group overflow-hidden relative"
                         >
                             <div className="absolute inset-0 bg-emerald-500/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                             <span className="relative z-10 flex items-center gap-3">

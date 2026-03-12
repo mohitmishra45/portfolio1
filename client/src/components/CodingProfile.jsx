@@ -80,7 +80,7 @@ const CodingProfile = ({ data, liveStats }) => {
         .slice(0, 4);
 
     return (
-        <section id="coding" className="py-24 relative z-10">
+        <section id="coding" className="py-24 relative z-10 bg-[var(--bg-primary)] transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
@@ -89,8 +89,8 @@ const CodingProfile = ({ data, liveStats }) => {
                     transition={{ duration: 0.9 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl font-bold text-white section-heading">Coding <span className="text-emerald-400">Profile</span></h2>
-                    <p className="text-gray-400 mt-6 max-w-xl mx-auto">My competitive programming journey across platforms — visualized.</p>
+                    <h2 className="text-4xl font-bold text-primary section-heading">Coding <span className="text-emerald-400">Profile</span></h2>
+                    <p className="text-secondary mt-6 max-w-xl mx-auto">My competitive programming journey across platforms — visualized.</p>
                     {anyLive && (
                         <div className="mt-3">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20">
@@ -167,7 +167,7 @@ const CodingProfile = ({ data, liveStats }) => {
                                 <span className="gauge-label">Solved</span>
                             </div>
                         </div>
-                        <p className="text-gray-400 text-sm mt-4">Fundamentals & DSA</p>
+                        <p className="text-secondary text-sm mt-4">Fundamentals & DSA</p>
                         <DownloadCSVButton platform="gfg" label="View Profile (CSV)" />
                     </motion.div>
                 </div>

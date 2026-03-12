@@ -30,7 +30,7 @@ const Projects = ({ data }) => {
     };
 
     return (
-        <section id="projects" className="py-24 relative z-10 bg-[#07070a]">
+        <section id="projects" className="py-24 relative z-10 bg-[var(--bg-primary)] transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
@@ -38,10 +38,10 @@ const Projects = ({ data }) => {
                     viewport={{ once: true }}
                     className="flex flex-col items-center mb-16 relative"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white section-heading tracking-tight">
+                    <h2 className="text-4xl md:text-5xl font-bold text-primary section-heading tracking-tight">
                         Featured <span className="text-emerald-400">Projects</span>
                     </h2>
-                    <p className="text-gray-400 mt-4 max-w-2xl text-center text-lg">
+                    <p className="text-secondary mt-4 max-w-2xl text-center text-lg">
                         A selection of my recent work in Data Science, Machine Learning, and Web Development.
                     </p>
                 </motion.div>
@@ -52,7 +52,7 @@ const Projects = ({ data }) => {
                     <button
                         onClick={prevProject}
                         disabled={currentIndex === 0}
-                        className={`absolute -left-5 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[#11111a]/90 text-white border border-white/10 transition-all shadow-lg shadow-black/50 ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-70 hover:opacity-100 md:opacity-0 md:group-hover:opacity-100'}`}
+                        className={`absolute -left-5 md:-left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--bg-secondary)] text-primary border border-white/10 transition-all shadow-lg shadow-black/20 ${currentIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-70 hover:opacity-100 md:opacity-0 md:group-hover:opacity-100'}`}
                     >
                         <i className="fas fa-chevron-left text-sm md:text-base"></i>
                     </button>
@@ -73,7 +73,7 @@ const Projects = ({ data }) => {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: idx * 0.1, duration: 0.5 }}
-                                        className="group/card relative min-h-[500px] flex flex-col rounded-2xl overflow-hidden bg-[#11111a] border border-white/10 hover-border-accent transition-all duration-500"
+                                        className="group/card relative min-h-[500px] flex flex-col rounded-2xl overflow-hidden bg-[var(--bg-secondary)] border border-[var(--card-border)] hover-border-accent transition-all duration-500 shadow-sm"
                                     >
                                         {/* Decorative Glow */}
                                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-emerald-500/10 rounded-full blur-3xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-700"></div>
@@ -87,21 +87,21 @@ const Projects = ({ data }) => {
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                                                 />
                                             ) : (
-                                                <div className="w-full h-full bg-[#1a1a24] flex items-center justify-center">
+                                                <div className="w-full h-full bg-[var(--bg-secondary)] flex items-center justify-center">
                                                     <i className={`fas ${project.icon || 'fa-code'} text-5xl text-emerald-400 opacity-20 group-hover/card:opacity-50 transition-opacity duration-500`}></i>
                                                 </div>
                                             )}
                                             {/* Gradient Overlay for image */}
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#11111a] via-transparent to-transparent opacity-60"></div>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-transparent to-transparent opacity-60"></div>
                                         </div>
 
                                         {/* Lower Half: Title, Details & Tech Stack */}
-                                        <div className="flex-1 p-6 flex flex-col relative z-10 bg-[#11111a] group-hover/card:bg-[#161622] transition-colors duration-500">
+                                        <div className="flex-1 p-6 flex flex-col relative z-10 bg-[var(--bg-secondary)] group-hover/card:bg-[var(--bg-primary)] transition-colors duration-500">
                                             <div className="mb-4">
-                                                <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-2 group-hover/card:text-emerald-400 transition-colors">
+                                                <h3 className="text-xl md:text-2xl font-bold text-primary leading-tight mb-2 group-hover/card:text-emerald-400 transition-colors">
                                                     {project.title}
                                                 </h3>
-                                                <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                                                <p className="text-secondary text-sm leading-relaxed line-clamp-2">
                                                     {project.description}
                                                 </p>
                                             </div>
@@ -129,7 +129,7 @@ const Projects = ({ data }) => {
                                                         href={project.github || "#"} 
                                                         target="_blank" 
                                                         rel="noreferrer"
-                                                        className="flex-1 py-2 bg-transparent border border-white/10 hover:border-emerald-500/50 hover:text-emerald-400 text-white text-center rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2"
+                                                        className="flex-1 py-2 bg-transparent border border-[var(--card-border)] hover:border-emerald-500/50 hover:text-emerald-400 text-primary text-center rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2"
                                                     >
                                                         <i className="fab fa-github text-sm"></i> Code
                                                     </a>
@@ -146,7 +146,7 @@ const Projects = ({ data }) => {
                     <button
                         onClick={nextProject}
                         disabled={currentIndex + cardsVisible >= projects.length}
-                        className={`absolute -right-5 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[#11111a]/90 text-white border border-white/10 transition-all shadow-lg shadow-black/50 ${currentIndex + cardsVisible >= projects.length ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-70 hover:opacity-100 md:opacity-0 md:group-hover:opacity-100'}`}
+                        className={`absolute -right-5 md:-right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[var(--bg-secondary)] text-primary border border-white/10 transition-all shadow-lg shadow-black/20 ${currentIndex + cardsVisible >= projects.length ? 'opacity-30 cursor-not-allowed' : 'hover:bg-emerald-500 hover:border-emerald-400 hover:text-black opacity-70 hover:opacity-100 md:opacity-0 md:group-hover:opacity-100'}`}
                     >
                         <i className="fas fa-chevron-right text-sm md:text-base"></i>
                     </button>

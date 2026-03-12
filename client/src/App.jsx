@@ -26,6 +26,21 @@ function App() {
   const [data, setData] = useState(null);
   const [liveStats, setLiveStats] = useState({ leetcode: null, hackerrank: null, gfg: null });
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+  useEffect(() => {
+    // Apply theme to body
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,7 +124,7 @@ function App() {
   return (
     <>
       <ParticleBackground />
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main className="relative z-10">
         <Hero data={data?.hero} />
         <Suspense fallback={<SectionLoader />}>
