@@ -1,0 +1,266 @@
+{
+    "hero": {
+        "name": "Mohit Kumar Mishra",
+        "profileImage": "/assets/images/profile.png",
+        "roles": [
+            "Data Science",
+            "Machine Learning",
+            "Software Developer"
+        ],
+        "tagline": "\"Aspiring Data Science Engineer pulling insights from complex data.\""
+    },
+    "about": {
+        "education": "B.Tech in Computer Science and Engineering at Lovely Professional University.",
+        "description": "Currently pursuing a B.Tech in Computer Science and Engineering at Lovely Professional University, with a strong focus on Data Science. Hands-on experience with C, C++, Python, DSA, Data Analysis, Machine Learning, and statistical modeling. Practical experience with JavaScript and Node.js.",
+        "stats": {
+            "problemsSolved": "244",
+            "dayStreak": "29",
+            "activeDays": "82",
+            "submissions": "319"
+        }
+    },
+    "coding": {
+        "leetcode": {
+            "solved": 152,
+            "easy": 94,
+            "med": 52,
+            "hard": 6
+        },
+        "hackerrank": {
+            "solved": 78,
+            "skills": [
+                "SQL",
+                "C++",
+                "Python"
+            ]
+        },
+        "gfg": {
+            "solved": 14,
+            "skills": [
+                "Fundamentals & DSA"
+            ]
+        }
+    },
+    "skills": [
+        {
+            "category": "Programming",
+            "icon": "fa-code",
+            "items": [
+                { "name": "Python", "level": "90%", "icon": "fab fa-python" },
+                { "name": "C", "level": "85%", "icon": "fa-solid fa-c" },
+                { "name": "C++", "level": "85%", "icon": "fa-solid fa-code" },
+                { "name": "Java", "level": "75%", "icon": "fab fa-java" },
+                { "name": "JavaScript", "level": "80%", "icon": "fab fa-js" },
+                { "name": "SQL", "level": "85%", "icon": "fa-solid fa-database" }
+            ]
+        },
+        {
+            "category": "Databases",
+            "icon": "fa-server",
+            "items": [
+                { "name": "SQL", "level": "85%", "icon": "fa-solid fa-database" },
+                { "name": "Oracle", "level": "70%", "icon": "fa-solid fa-cloud" }
+            ]
+        },
+        {
+            "category": "Frameworks",
+            "icon": "fa-layer-group",
+            "items": [
+                { "name": "React.js", "level": "80%", "icon": "fab fa-react" },
+                { "name": "Node.js", "level": "75%", "icon": "fab fa-node-js" },
+                { "name": "Flask", "level": "70%", "icon": "fa-solid fa-leaf" },
+                { "name": "Streamlit", "level": "85%", "icon": "fa-solid fa-chart-line" }
+            ]
+        },
+        {
+            "category": "Libraries",
+            "icon": "fa-book",
+            "items": [
+                { "name": "NumPy", "level": "85%", "icon": "fa-solid fa-calculator" },
+                { "name": "Pandas", "level": "90%", "icon": "fa-solid fa-table" },
+                { "name": "Scikit-Learn", "level": "85%", "icon": "fa-solid fa-robot" },
+                { "name": "Tkinter", "level": "70%", "icon": "fa-solid fa-window-maximize" },
+                { "name": "Matplotlib", "level": "80%", "icon": "fa-solid fa-chart-pie" }
+            ]
+        }
+    ],
+    "experience": [
+        {
+            "title": "B.Tech Computer Science and Engineering",
+            "company": "Lovely Professional University",
+            "date": "Aug 2023 - Jul 2027",
+            "description": "Bachelor of Technology degree with a focus on core CS and Data Science.\nCGPA: 8.39",
+            "tech": [
+                "Data Science",
+                "DSA",
+                "Programming"
+            ],
+            "projects": []
+        },
+        {
+            "title": "Data Analyst Internship",
+            "company": "Acedemor",
+            "date": "Jun 2024 - Jul 2024",
+            "description": "Remote internship focusing on Exploratory Data Analysis, SQL, and data visualization.",
+            "tech": [
+                "Exploratory Data Analysis",
+                "SQL",
+                "Python",
+                "Data Analytics"
+            ],
+            "projects": [
+                "Quiz Game",
+                "Loan Management System"
+            ]
+        },
+        {
+            "title": "Class 12th (Science)",
+            "company": "JEEWAN PUBLIC SCHOOL",
+            "date": "Aug 2020 - Oct 2022",
+            "description": "Completed higher secondary education focusing on Science.\nPercentage: 83.4%",
+            "tech": [],
+            "projects": []
+        },
+        {
+            "title": "Class 10th",
+            "company": "JEEWAN PUBLIC SCHOOL",
+            "date": "Aug 2019 - Jul 2020",
+            "description": "Completed primary education.\nPercentage: 81%",
+            "tech": [],
+            "projects": []
+        }
+    ],
+    "projects": [
+        {
+            "title": "MedPredict AI",
+            "date": "Oct 2025 - Dec 2025",
+            "description": "Intelligent multi-disease prediction platform using ML to analyze patient data for 6 major diseases.",
+            "tech": [
+                "Scikit-Learn",
+                "React.js",
+                "Machine Learning"
+            ],
+            "image": "/assets/images/med1.png",
+            "github": "https://github.com/mohitmishra45/MedPredict-AI",
+            "live": "https://mohitmed.vercel.app/#home",
+            "color": "emerald"
+        },
+        {
+            "title": "Product Purchase Likelihood Prediction",
+            "date": "Jul 2025 - Aug 2025",
+            "description": "Interactive Streamlit dashboard using Logistic Regression and Decision Trees to predict customer behavior.",
+            "tech": [
+                "Python",
+                "Pandas",
+                "Scikit-Learn",
+                "Streamlit"
+            ],
+            "image": "/assets/images/image copy 6.png",
+            "github": "https://github.com/mohitmishra45",
+            "live": "https://appuct-purchase-likelihood-prediction-dashboard-yxtnwwmntip7un.streamlit.app/",
+            "color": "green"
+        },
+        {
+            "title": "Myntra Sales Analytics Dashboard",
+            "date": "Feb 2025 - Apr 2025",
+            "description": "Python-based sales analysis with an AI assistant for natural language queries.",
+            "tech": [
+                "Pandas",
+                "Python",
+                "Matplotlib",
+                "Streamlit"
+            ],
+            "image": "/assets/images/myntra1.png",
+            "github": "https://github.com/mohitmishra45",
+            "live": "https://myntra-analytics.streamlit.app/",
+            "color": "cyan"
+        },
+        {
+            "title": "Real-Time Process Monitoring Dashboard",
+            "date": "Feb 2025 - Apr 2025",
+            "description": "System metrics tracker with AI-powered anomaly detection and predictive analytics.",
+            "tech": [
+                "Python",
+                "Tkinter",
+                "psutil",
+                "scikit-learn"
+            ],
+            "image": "/assets/images/image copy 3.png",
+            "color": "cyan"
+        },
+        {
+            "title": "Pizza Sales Dashboard",
+            "date": "Apr 2025 - May 2025",
+            "description": "KPI analysis of store performance and customer preferences using Excel and Pivot Tables.",
+            "tech": [
+                "Excel",
+                "Pivot Tables",
+                "Data Analysis"
+            ],
+            "image": "/assets/images/image copy 4.png",
+            "color": "orange"
+        }
+    ],
+    "achievements": [
+        {
+            "title": "Prime Minister Scholarship",
+            "description": "Appreciation recipient for academic excellence.",
+            "icon": "fa-laptop-code",
+            "tech": []
+        },
+        {
+            "title": "244+ Problems Solved",
+            "description": "Across LeetCode, HackerRank & GeeksforGeeks",
+            "tech": [
+                "LeetCode",
+                "HackerRank",
+                "GFG"
+            ],
+            "icon": "fa-laptop-code"
+        }
+    ],
+    "certifications": [
+        {
+            "provider": "Oracle",
+            "title": "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+            "image": "/assets/images/oracleAi.png",
+            "date": "Sep 2025",
+            "link": "https://catalog-education.oracle.com/ords/certview/sharebadge?id=0A9C7F66ABF00A3D38C066F14EDC8FCEA651B6447C72BB9DA51BE5173919E9CE"
+        },
+        {
+            "provider": "Cipher School",
+            "title": "A Guide To Machine Learning With Data Science",
+            "image": "/assets/images/image.png",
+            "date": "Jul 2025",
+            "link": "https://www.cipherschools.com/certificate?id=6628b66c2d7789dcb522a92b"
+        },
+        {
+            "provider": "Academor",
+            "title": "Data Science",
+            "date": "Aug 2024",
+            "image": "/assets/images/image copy 2.png",
+            "link": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQVzFVcHKsRvBXcKSWqFghTbNWV"
+        },
+        {
+            "provider": "HackerRank",
+            "title": "SQL (Basic)",
+            "image": "/assets/images/SQL_BASIC.png",
+            "date": "May 2024",
+            "link": "https://www.hackerrank.com/certificates/02ef63d122e8"
+        },
+        {
+            "provider": "HackerRank",
+            "title": "SQL (Advanced)",
+            "image": "/assets/images/SQL_ADVANCED.png",
+            "date": "May 2024",
+            "link": "https://www.hackerrank.com/certificates/e5ab1e996a04"
+        },
+        {
+            "provider": "NPTEL",
+            "title": "Cloud Computing",
+            "image": "/assets/images/image copy.png",
+            "date": "May 2025",
+            "link": "#"
+        }
+    ]
+}
