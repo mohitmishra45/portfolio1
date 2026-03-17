@@ -31,80 +31,23 @@ const Hero = ({ data }) => {
 
             <div className="max-w-7xl mx-auto px-6 w-full relative h-full flex flex-col justify-center">
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
-                    {/* Left Content: Text */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="flex-1 text-center lg:text-left space-y-4 md:space-y-6"
-                    >
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-block px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/5 mb-2 backdrop-blur-sm"
-                        >
-                            <h3 className="text-emerald-400 font-mono text-sm md:text-base font-bold tracking-widest uppercase flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                                System Online
-                            </h3>
-                        </motion.div>
-
-                        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-primary tracking-tight leading-[1.1] mb-2 drop-shadow-sm">
-                            {data?.name || "Mohit Kumar Mishra"}
-                        </h1>
-
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-secondary transition-all duration-300 min-h-[1.2em]">
-                            I'm an <TypingEffect text="Aspiring Data Science Engineer" className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-blue-500 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]" />
-                        </h2>
-
-                        <p className="text-secondary opacity-90 max-w-2xl mx-auto lg:mx-0 text-lg md:text-xl leading-relaxed mt-6 font-medium">
-                            I build exceptional and accessible data-driven solutions. Passionate about transforming raw data into elegant, predictive, and scalable intelligent systems.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 mt-10">
-                            <motion.a
-                                href="#projects"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-400 text-white font-bold text-lg shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)] transition-all w-full sm:w-auto flex items-center justify-center gap-3 group relative overflow-hidden"
-                            >
-                                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
-                                <span className="relative z-10 flex items-center gap-2">
-                                    View Projects
-                                    <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                                </span>
-                            </motion.a>
-
-                            <motion.a
-                                href="#contact"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--card-border)] hover:border-emerald-500/50 text-emerald-400 font-bold text-lg hover:bg-emerald-500/10 transition-all w-full sm:w-auto flex items-center justify-center gap-3 shadow-lg backdrop-blur-md"
-                            >
-                                <i className="fas fa-terminal"></i>
-                                Contact Me
-                            </motion.a>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Content: Profile Picture */}
+                    {/* Profile Picture - Moved above text on mobile for better visibility */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                        className="relative hidden lg:block"
+                        className="relative order-first lg:order-last"
                     >
-                        <div className="relative w-72 h-72 lg:w-[400px] lg:h-[400px]">
+                        <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-[400px] lg:h-[400px]">
                             {/* Enhanced Decorative Rings */}
-                            <div className="absolute inset-[-20px] rounded-full border border-emerald-500/20 animate-[spin_15s_linear_infinite] pointer-events-none"></div>
-                            <div className="absolute inset-[-40px] rounded-full border border-dashed border-blue-500/20 animate-[spin_25s_linear_infinite_reverse] pointer-events-none"></div>
+                            <div className="absolute inset-[-15px] sm:inset-[-20px] rounded-full border border-emerald-500/20 animate-[spin_15s_linear_infinite] pointer-events-none"></div>
+                            <div className="absolute inset-[-30px] sm:inset-[-40px] rounded-full border border-dashed border-blue-500/20 animate-[spin_25s_linear_infinite_reverse] pointer-events-none"></div>
                             
                             {/* Inner Glow */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-blue-500/20 rounded-full blur-2xl animate-pulse mix-blend-screen pointer-events-none"></div>
 
                             {/* Main Image Container */}
-                            <div className="relative w-full h-full rounded-full p-3 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.15)] group">
+                            <div className="relative w-full h-full rounded-full p-2 sm:p-3 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.15)] group">
                                 <img 
                                     src={data?.profileImage || "/assets/images/profile.jpeg"} 
                                     alt={data?.name} 
@@ -120,19 +63,76 @@ const Hero = ({ data }) => {
 
                             {/* Floating Badges/Icons - Enhanced */}
                             <motion.div 
-                                animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+                                animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute top-[10%] -right-8 w-16 h-16 bg-[var(--bg-secondary)] backdrop-blur-md border border-emerald-500/30 rounded-2xl flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.2)] z-20"
+                                className="absolute top-[10%] -right-4 sm:-right-8 w-12 h-12 sm:w-16 sm:h-16 bg-[var(--bg-secondary)] backdrop-blur-md border border-emerald-500/30 rounded-xl sm:rounded-2xl flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.2)] z-20"
                             >
-                                <i className="fas fa-brain text-3xl"></i>
+                                <i className="fas fa-brain text-xl sm:text-3xl"></i>
                             </motion.div>
                             <motion.div 
-                                animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
+                                animate={{ y: [0, 10, 0], rotate: [0, -5, 0] }}
                                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                className="absolute bottom-[10%] -left-8 w-16 h-16 bg-[var(--bg-secondary)] backdrop-blur-md border border-blue-500/30 rounded-2xl flex items-center justify-center text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.2)] z-20"
+                                className="absolute bottom-[10%] -left-4 sm:-left-8 w-12 h-12 sm:w-16 sm:h-16 bg-[var(--bg-secondary)] backdrop-blur-md border border-blue-500/30 rounded-xl sm:rounded-2xl flex items-center justify-center text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.2)] z-20"
                             >
-                                <i className="fas fa-database text-3xl"></i>
+                                <i className="fas fa-database text-xl sm:text-3xl"></i>
                             </motion.div>
+                        </div>
+                    </motion.div>
+
+                    {/* Left Content: Text */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="flex-1 text-center lg:text-left space-y-4 md:space-y-6"
+                    >
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="inline-block px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/5 mb-2 backdrop-blur-sm"
+                        >
+                            <h3 className="text-emerald-400 font-mono text-xs sm:text-sm md:text-base font-bold tracking-widest uppercase flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                System Online
+                            </h3>
+                        </motion.div>
+
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-primary tracking-tight leading-[1.1] mb-2 drop-shadow-sm">
+                            {data?.name || "Mohit Kumar Mishra"}
+                        </h1>
+
+                        <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-secondary transition-all duration-300 min-h-[1.2em]">
+                            I'm an <TypingEffect text="Aspiring Data Science Engineer" className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-blue-500 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]" />
+                        </h2>
+
+                        <p className="text-secondary opacity-90 max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg md:text-xl leading-relaxed mt-4 sm:mt-6 font-medium">
+                            I build exceptional and accessible data-driven solutions. Passionate about transforming raw data into elegant, predictive, and scalable intelligent systems.
+                        </p>
+
+                        <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 mt-8 sm:mt-10">
+                            <motion.a
+                                href="#projects"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-8 py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-400 text-white font-bold text-lg shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)] transition-all w-full sm:w-auto flex items-center justify-center gap-3 group relative overflow-hidden"
+                            >
+                                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
+                                <span className="relative z-10 flex items-center gap-2">
+                                    View Projects
+                                    <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </span>
+                            </motion.a>
+
+                            <motion.a
+                                href="#contact"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-8 py-3 sm:py-4 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--card-border)] hover:border-emerald-500/50 text-emerald-400 font-bold text-lg hover:bg-emerald-500/10 transition-all w-full sm:w-auto flex items-center justify-center gap-3 shadow-lg backdrop-blur-md"
+                            >
+                                <i className="fas fa-terminal"></i>
+                                Contact Me
+                            </motion.a>
                         </div>
                     </motion.div>
                 </div>
