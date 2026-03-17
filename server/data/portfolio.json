@@ -46,41 +46,109 @@
             "category": "Programming",
             "icon": "fa-code",
             "items": [
-                { "name": "Python", "level": "90%", "icon": "fab fa-python" },
-                { "name": "C", "level": "85%", "icon": "fa-solid fa-c" },
-                { "name": "C++", "level": "85%", "icon": "fa-solid fa-code" },
-                { "name": "Java", "level": "75%", "icon": "fab fa-java" },
-                { "name": "JavaScript", "level": "80%", "icon": "fab fa-js" },
-                { "name": "SQL", "level": "85%", "icon": "fa-solid fa-database" }
+                {
+                    "name": "Python",
+                    "level": "90%",
+                    "icon": "fab fa-python"
+                },
+                {
+                    "name": "C",
+                    "level": "85%",
+                    "icon": "fa-solid fa-c"
+                },
+                {
+                    "name": "C++",
+                    "level": "85%",
+                    "icon": "fa-solid fa-code"
+                },
+                {
+                    "name": "Java",
+                    "level": "75%",
+                    "icon": "fab fa-java"
+                },
+                {
+                    "name": "JavaScript",
+                    "level": "80%",
+                    "icon": "fab fa-js"
+                },
+                {
+                    "name": "SQL",
+                    "level": "85%",
+                    "icon": "fa-solid fa-database"
+                }
             ]
         },
         {
             "category": "Databases",
             "icon": "fa-server",
             "items": [
-                { "name": "SQL", "level": "85%", "icon": "fa-solid fa-database" },
-                { "name": "Oracle", "level": "70%", "icon": "fa-solid fa-cloud" }
+                {
+                    "name": "SQL",
+                    "level": "85%",
+                    "icon": "fa-solid fa-database"
+                },
+                {
+                    "name": "Oracle",
+                    "level": "70%",
+                    "icon": "fa-solid fa-cloud"
+                }
             ]
         },
         {
             "category": "Frameworks",
             "icon": "fa-layer-group",
             "items": [
-                { "name": "React.js", "level": "80%", "icon": "fab fa-react" },
-                { "name": "Node.js", "level": "75%", "icon": "fab fa-node-js" },
-                { "name": "Flask", "level": "70%", "icon": "fa-solid fa-leaf" },
-                { "name": "Streamlit", "level": "85%", "icon": "fa-solid fa-chart-line" }
+                {
+                    "name": "React.js",
+                    "level": "80%",
+                    "icon": "fab fa-react"
+                },
+                {
+                    "name": "Node.js",
+                    "level": "75%",
+                    "icon": "fab fa-node-js"
+                },
+                {
+                    "name": "Flask",
+                    "level": "70%",
+                    "icon": "fa-solid fa-leaf"
+                },
+                {
+                    "name": "Streamlit",
+                    "level": "85%",
+                    "icon": "fa-solid fa-chart-line"
+                }
             ]
         },
         {
             "category": "Libraries",
             "icon": "fa-book",
             "items": [
-                { "name": "NumPy", "level": "85%", "icon": "fa-solid fa-calculator" },
-                { "name": "Pandas", "level": "90%", "icon": "fa-solid fa-table" },
-                { "name": "Scikit-Learn", "level": "85%", "icon": "fa-solid fa-robot" },
-                { "name": "Tkinter", "level": "70%", "icon": "fa-solid fa-window-maximize" },
-                { "name": "Matplotlib", "level": "80%", "icon": "fa-solid fa-chart-pie" }
+                {
+                    "name": "NumPy",
+                    "level": "85%",
+                    "icon": "fa-solid fa-calculator"
+                },
+                {
+                    "name": "Pandas",
+                    "level": "90%",
+                    "icon": "fa-solid fa-table"
+                },
+                {
+                    "name": "Scikit-Learn",
+                    "level": "85%",
+                    "icon": "fa-solid fa-robot"
+                },
+                {
+                    "name": "Tkinter",
+                    "level": "70%",
+                    "icon": "fa-solid fa-window-maximize"
+                },
+                {
+                    "name": "Matplotlib",
+                    "level": "80%",
+                    "icon": "fa-solid fa-chart-pie"
+                }
             ]
         }
     ],
@@ -89,7 +157,7 @@
             "title": "B.Tech Computer Science and Engineering",
             "company": "Lovely Professional University",
             "date": "Aug 2023 - Jul 2027",
-            "description": "Bachelor of Technology degree with a focus on core CS and Data Science.\nCGPA: 8.39",
+            "description": "Bachelor of Technology degree with a focus on core CS and Data Science.\nCGPA: 8.4",
             "tech": [
                 "Data Science",
                 "DSA",
@@ -217,6 +285,14 @@
                 "GFG"
             ],
             "icon": "fa-laptop-code"
+        },
+        {
+            "title": "LeetCode 50 Days Badge",
+            "description": "Consistently active for 50 days to earn the LeetCode 50 Days badge.",
+            "icon": "fa-medal",
+            "tech": [
+                "LeetCode"
+            ]
         }
     ],
     "certifications": [

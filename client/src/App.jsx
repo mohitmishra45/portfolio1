@@ -1,4 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import WelcomeScreen from './components/WelcomeScreen';
 import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -26,6 +28,7 @@ function App() {
   const [data, setData] = useState(null);
   const [liveStats, setLiveStats] = useState({ leetcode: null, hackerrank: null, gfg: null });
   const [loading, setLoading] = useState(true);
+  const [welcomeComplete, setWelcomeComplete] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
@@ -112,34 +115,45 @@ function App() {
     }
   } : data?.about;
 
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0f]">
-      <div className="text-center">
-        <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-        <p className="text-gray-400 text-lg font-mono">Initializing Portfolio...</p>
-      </div>
-    </div>
-  );
-
   return (
     <>
-      <ParticleBackground />
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main className="relative z-10">
-        <Hero data={data?.hero} />
-        <Suspense fallback={<SectionLoader />}>
-          <About data={aboutData} />
-          <Experience data={data?.experience} />
-          <Skills data={data?.skills} />
-          <CodingProfile data={codingData} liveStats={liveStats} />
-          <Projects data={data?.projects} />
-          <Achievements achievementsData={data?.achievements} certsData={data?.certifications} />
-          <Contact />
-        </Suspense>
-      </main>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
+      {/* 
+        The Welcome Screen is wrapped in AnimatePresence so it can animate out. 
+        It naturally covers the screen due to fixed positioning and high z-index.
+      */}
+      <AnimatePresence mode="wait">
+        {!welcomeComplete && <WelcomeScreen onComplete={() => setWelcomeComplete(true)} key="welcome" />}
+      </AnimatePresence>
+
+      {/* Main Content: Behind the welcome screen initially, but only shown if loading is complete to avoid flashes */}
+      {loading ? (
+        <div className="min-h-screen flex items-center justify-center bg-[#0a0a0f]">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-400 text-lg font-mono">Initializing Portfolio...</p>
+          </div>
+        </div>
+      ) : (
+        <div className={!welcomeComplete ? "h-screen overflow-hidden" : ""}>
+          <ParticleBackground />
+          <Navbar theme={theme} toggleTheme={toggleTheme} />
+          <main className="relative z-10">
+            <Hero data={data?.hero} />
+            <Suspense fallback={<SectionLoader />}>
+              <About data={aboutData} />
+              <Experience data={data?.experience} />
+              <Skills data={data?.skills} />
+              <CodingProfile data={codingData} liveStats={liveStats} />
+              <Projects data={data?.projects} />
+              <Achievements achievementsData={data?.achievements} certsData={data?.certifications} />
+              <Contact />
+            </Suspense>
+          </main>
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+        </div>
+      )}
     </>
   );
 }

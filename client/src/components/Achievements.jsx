@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Achievements = ({ achievementsData, certsData }) => {
     const certs = certsData || [];
     const [certIndex, setCertIndex] = useState(0);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    useEffect(() => {
+        if (selectedImage) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [selectedImage]);
 
     // Number of cards to show at once (match Projects: 3 on desktop)
     const [cardsVisible, setCardsVisible] = useState(3);
@@ -120,10 +132,36 @@ const Achievements = ({ achievementsData, certsData }) => {
                                             </div>
 
                                             {/* Glassmorphism Hover Overlay for Actions */}
-                                            <div className="absolute inset-0 bg-[var(--bg-primary)]/80 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 flex items-center justify-center gap-4 transition-opacity duration-300 z-20">
-                                                <a href={cert.link || '#'} target="_blank" rel="noopener noreferrer" className="w-16 h-16 rounded-full bg-emerald-500 flex items-center justify-center text-black hover:bg-emerald-400 hover:scale-110 transition-all shadow-accent group/btn">
-                                                    <i className="fas fa-external-link-alt text-xl group-hover/btn:rotate-12 transition-transform"></i>
-                                                </a>
+                                            <div className="absolute inset-0 bg-[var(--bg-primary)]/80 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 flex items-center justify-center gap-3 transition-opacity duration-300 z-20">
+                                                {cert.image && (
+                                                    <button 
+                                                        onClick={(e) => { e.preventDefault(); setSelectedImage(cert.image); }}
+                                                        className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--bg-secondary)] border border-emerald-500/30 flex items-center justify-center text-emerald-400 hover:bg-emerald-500 hover:text-black hover:scale-110 transition-all shadow-[0_0_15px_rgba(52,211,153,0.2)] group/btn"
+                                                        title="View Certificate"
+                                                    >
+                                                        <i className="fas fa-eye text-lg group-hover/btn:scale-110 transition-transform"></i>
+                                                    </button>
+                                                )}
+
+                                                {cert.link && cert.link !== '#' && (
+                                                    <a href={cert.link} target="_blank" rel="noopener noreferrer" className="w-14 h-14 flex-shrink-0 rounded-full bg-emerald-500 flex items-center justify-center text-black hover:bg-emerald-400 hover:scale-110 transition-all shadow-accent group/btn" title="Verify Certificate">
+                                                        <i className="fas fa-external-link-alt text-xl group-hover/btn:rotate-12 transition-transform"></i>
+                                                    </a>
+                                                )}
+
+                                                {cert.image && (
+                                                    <a 
+                                                        href={cert.image} 
+                                                        download={`Certificate-${cert.title.replace(/\s+/g, '-')}`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        className="w-12 h-12 flex-shrink-0 rounded-full bg-[var(--bg-secondary)] border border-emerald-500/30 flex items-center justify-center text-emerald-400 hover:bg-emerald-500 hover:text-black hover:scale-110 transition-all shadow-[0_0_15px_rgba(52,211,153,0.2)] group/btn"
+                                                        title="Download Certificate"
+                                                    >
+                                                        <i className="fas fa-download text-lg group-hover/btn:-translate-y-1 transition-transform"></i>
+                                                    </a>
+                                                )}
                                             </div>
                                         </motion.div>
                                     </div>
@@ -195,6 +233,45 @@ const Achievements = ({ achievementsData, certsData }) => {
                     </div>
                 </div>
             </section>
+
+            {/* Image Modal */}
+            <AnimatePresence>
+                {selectedImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedImage(null)}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8 backdrop-blur-md cursor-zoom-out"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            className="relative max-w-5xl w-full flex flex-col items-center justify-center pointer-events-none"
+                        >
+                            <div className="relative pointer-events-auto">
+                                <button 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedImage(null);
+                                    }}
+                                    className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 hover:bg-emerald-400 border border-white/20 rounded-full flex items-center justify-center text-black transition-colors shadow-lg z-[110]"
+                                >
+                                    <i className="fas fa-times text-xl"></i>
+                                </button>
+                                <img 
+                                    src={selectedImage} 
+                                    alt="Certificate Full View" 
+                                    className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10" 
+                                    onClick={e => e.stopPropagation()}
+                                />
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
