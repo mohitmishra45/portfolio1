@@ -5,17 +5,43 @@ const Achievements = ({ achievementsData, certsData }) => {
     const certs = certsData || [];
     const [certIndex, setCertIndex] = useState(0);
     const [selectedImage, setSelectedImage] = useState(null);
+    const modalRef = React.useRef(null);
 
     useEffect(() => {
         if (selectedImage) {
             document.body.style.overflow = 'hidden';
+            // Auto-trigger fullscreen on mount
+            const timeoutId = setTimeout(() => {
+                if (modalRef.current && !document.fullscreenElement) {
+                    modalRef.current.requestFullscreen().catch(err => {
+                        console.warn(`Fullscreen auto-trigger blocked: ${err.message}`);
+                    });
+                }
+            }, 50); // Small delay to ensure ref is attached
+            return () => clearTimeout(timeoutId);
         } else {
             document.body.style.overflow = '';
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
         }
         return () => {
             document.body.style.overflow = '';
         };
     }, [selectedImage]);
+
+    const toggleFullscreen = (e) => {
+        e.stopPropagation();
+        if (!modalRef.current) return;
+
+        if (!document.fullscreenElement) {
+            modalRef.current.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    };
 
     // Number of cards to show at once (match Projects: 3 on desktop)
     const [cardsVisible, setCardsVisible] = useState(3);
@@ -217,15 +243,37 @@ const Achievements = ({ achievementsData, certsData }) => {
                                 <p className="text-secondary text-sm flex-grow leading-relaxed relative z-10 line-clamp-3">{ach.description}</p>
 
                                 {ach.tech && (
-                                    <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-[var(--card-border)] relative z-10">
-                                        {ach.tech.map(t => (
-                                            <span
-                                                key={t}
-                                                className="text-xs font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded"
+                                    <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-[var(--card-border)] relative z-10 items-center justify-between w-full">
+                                        <div className="flex flex-wrap gap-2">
+                                            {ach.tech.map(t => (
+                                                <span
+                                                    key={t}
+                                                    className="text-xs font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded"
+                                                >
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        {ach.certificate && (
+                                            <button
+                                                onClick={() => setSelectedImage(ach.certificate)}
+                                                className="text-emerald-400 hover:text-emerald-300 text-sm font-bold flex items-center gap-2 transition-colors group/btn"
                                             >
-                                                {t}
-                                            </span>
-                                        ))}
+                                                <span>View Certificate</span>
+                                                <i className="fas fa-certificate animate-pulse group-hover/btn:scale-110 transition-transform"></i>
+                                            </button>
+                                        )}
+                                    </div>
+                                )}
+                                {!ach.tech && ach.certificate && (
+                                    <div className="mt-5 pt-5 border-t border-[var(--card-border)] relative z-10 flex justify-end">
+                                        <button
+                                            onClick={() => setSelectedImage(ach.certificate)}
+                                            className="text-emerald-400 hover:text-emerald-300 text-sm font-bold flex items-center gap-2 transition-colors group/btn"
+                                        >
+                                            <span>View Certificate</span>
+                                            <i className="fas fa-certificate animate-pulse group-hover/btn:scale-110 transition-transform"></i>
+                                        </button>
                                     </div>
                                 )}
                             </motion.div>
@@ -238,33 +286,45 @@ const Achievements = ({ achievementsData, certsData }) => {
             <AnimatePresence>
                 {selectedImage && (
                     <motion.div
+                        ref={modalRef}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedImage(null)}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8 backdrop-blur-md cursor-zoom-out"
+                        className="fixed inset-0 z-[10000] flex items-center justify-center bg-black cursor-zoom-out"
                     >
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="relative max-w-5xl w-full flex flex-col items-center justify-center pointer-events-none"
+                            className="relative w-full h-full flex items-center justify-center pointer-events-none"
                         >
-                            <div className="relative pointer-events-auto">
-                                <button 
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setSelectedImage(null);
-                                    }}
-                                    className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 hover:bg-emerald-400 border border-white/20 rounded-full flex items-center justify-center text-black transition-colors shadow-lg z-[110]"
-                                >
-                                    <i className="fas fa-times text-xl"></i>
-                                </button>
+                            <div className="relative pointer-events-auto w-full h-full flex items-center justify-center">
+                                {/* Control Buttons */}
+                                <div className="absolute top-4 right-4 md:top-8 md:right-8 flex gap-4 z-[110]">
+                                    <button 
+                                        onClick={toggleFullscreen}
+                                        className="w-12 h-12 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center text-white transition-all shadow-2xl hover:scale-110 active:scale-95"
+                                        title="Toggle Full View"
+                                    >
+                                        <i className={`fas ${document.fullscreenElement ? 'fa-compress' : 'fa-expand'} text-xl`}></i>
+                                    </button>
+                                    <button 
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSelectedImage(null);
+                                        }}
+                                        className="w-12 h-12 bg-emerald-500 hover:bg-emerald-400 border border-white/20 rounded-full flex items-center justify-center text-black transition-all shadow-2xl hover:scale-110 active:scale-95"
+                                        title="Close"
+                                    >
+                                        <i className="fas fa-times text-2xl"></i>
+                                    </button>
+                                </div>
                                 <img 
                                     src={selectedImage} 
                                     alt="Certificate Full View" 
-                                    className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10" 
+                                    className="max-w-[98vw] max-h-[96vh] object-contain rounded-sm shadow-[0_0_100px_rgba(0,0,0,0.9)]" 
                                     onClick={e => e.stopPropagation()}
                                 />
                             </div>

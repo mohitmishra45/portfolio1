@@ -3,25 +3,45 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const [showBackToTop, setShowBackToTop] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-            setShowBackToTop(window.scrollY > 500);
+            const currentScrollY = window.scrollY;
+            
+            // Scrolled state for background change
+            setScrolled(currentScrollY > 50);
+            setShowBackToTop(currentScrollY > 500);
+
+            // Visibility state (hide on scroll down, show on scroll up)
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            
+            setLastScrollY(currentScrollY);
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [lastScrollY]);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
-        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
+        <motion.nav 
+            initial={{ y: 0 }}
+            animate={{ y: isVisible ? 0 : -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={`navbar ${scrolled ? 'scrolled' : ''}`} 
+            id="navbar"
+        >
             <div className="max-w-[95%] mx-auto px-6 flex justify-between items-center">
                 <a href="#" className="flex items-center gap-1 text-2xl font-black text-primary tracking-tighter">
                     M<span className="text-emerald-400">/</span><span className="text-cyan-400">&gt;</span>
@@ -93,7 +113,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             >
                 <i className="fas fa-arrow-up"></i>
             </div>
-        </nav>
+        </motion.nav>
     );
 };
 

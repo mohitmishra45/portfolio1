@@ -1,7 +1,7 @@
 {
     "hero": {
         "name": "Mohit Kumar Mishra",
-        "profileImage": "/assets/images/profile.jpg",
+        "profileImage": "/assets/images/profile.png",
         "roles": [
             "Data Science",
             "Machine Learning",
@@ -11,9 +11,9 @@
     },
     "about": {
         "education": "B.Tech in Computer Science and Engineering at Lovely Professional University.",
-        "description": "Currently pursuing a B.Tech in Computer Science and Engineering at Lovely Professional University, with a strong focus on Data Science. Hands-on experience with C, C++, Python, DSA, Data Analysis, Machine Learning, and statistical modeling. Practical experience with JavaScript and Node.js.",
+        "description": "Aspiring Data Science Engineer with a strong interest in Data Science, Machine Learning, and Data Structures. I have hands-on experience in C++ and Python, along with practical knowledge of tools like NumPy, Pandas, and Matplotlib for data analysis and visualization. I enjoy working with data to discover patterns, gain insights, and build predictive models for real-world problems.\\n\\nI have developed projects such as sales analysis dashboards and machine learning-based prediction systems, where I applied my skills to create data-driven solutions. I also have basic knowledge of JavaScript and Node.js, which helps me build simple web-based applications.\\n\\nRecognized for academic excellence by the Prime Minister’s Office (PMO), reflecting my dedication and consistent performance. I am continuously improving my problem-solving skills through Data Structures and Algorithms (DSA) and aim to build impactful and scalable solutions in the field of Data Science.",
         "stats": {
-            "problemsSolved": "244",
+            "problemsSolved": "283",
             "dayStreak": "29",
             "activeDays": "82",
             "submissions": "319"
@@ -35,7 +35,7 @@
             ]
         },
         "gfg": {
-            "solved": 14,
+            "solved": 53,
             "skills": [
                 "Fundamentals & DSA"
             ]
@@ -273,7 +273,8 @@
         {
             "title": "Prime Minister Scholarship",
             "description": "Appreciation recipient for academic excellence.",
-            "icon": "fa-laptop-code",
+            "icon": "fa-certificate",
+            "certificate": "/assets/images/image copy 5.png",
             "tech": []
         },
         {
@@ -337,6 +338,23 @@
             "image": "/assets/images/image copy.png",
             "date": "May 2025",
             "link": "#"
+        }
+    ],
+    "soft_skills": [
+        {
+            "name": "Soft Skills",
+            "icon": "fa-comments",
+            "color": "#42A5F5"
+        },
+        {
+            "name": "Problem Solving",
+            "icon": "fa-lightbulb",
+            "color": "#FFCA28"
+        },
+        {
+            "name": "Time Management",
+            "icon": "fa-hourglass-half",
+            "color": "#FF7043"
         }
     ]
 }

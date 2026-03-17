@@ -107,7 +107,7 @@ const Contact = () => {
                         initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
                         animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
                         exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--bg-primary)]/80"
+                        className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--bg-primary)]/80"
                     >
                         <motion.div
                             initial={{ scale: 0.8, opacity: 0, y: 50 }}
@@ -194,7 +194,6 @@ const Contact = () => {
                         Let's <span className="text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.3)]">Connect</span>
                     </h2>
                     <h3 className="text-xl text-secondary font-medium mb-4">I'm currently open for new opportunities</h3>
-                    <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-transparent mx-auto mt-2 rounded-full shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
                 </motion.div>
 
                 <motion.div
@@ -283,8 +282,7 @@ const Contact = () => {
                                     <motion.a
                                         key={idx}
                                         href={social.link}
-                                        target="_blank"
-                                        rel="noreferrer"
+                                        {...(!social.link.startsWith('mailto:') ? { target: '_blank', rel: 'noreferrer' } : {})}
                                         whileHover={{ y: -5, scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
                                         className={`w-14 h-14 rounded-2xl bg-[var(--bg-primary)] border border-[var(--card-border)] flex items-center justify-center transition-all duration-300 shadow-md ${social.bgHover}`}

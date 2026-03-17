@@ -14,7 +14,6 @@ const About = ({ data: aboutData }) => {
                     <h2 className="text-4xl font-bold text-primary section-heading">
                         About <span className="text-emerald-400">Me</span>
                     </h2>
-                    <div className="w-20 h-1 bg-gradient-accent mx-auto mt-4 rounded-full"></div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -28,13 +27,15 @@ const About = ({ data: aboutData }) => {
                         <h3 className="text-2xl font-bold text-primary mb-4">
                             Driven by Data, Focused on <span className="text-emerald-400">Impact</span>
                         </h3>
-                        <p className="text-secondary text-lg leading-relaxed">
-                            {aboutData?.description || "I find passion in extracting meaningful insights from complex datasets. My journey in Data Science and Machine Learning is fueled by a relentless curiosity and a desire to build intelligent systems."}
-                        </p>
-                        <p className="text-secondary text-lg leading-relaxed">
-                            Currently, I am pursuing my {aboutData?.education || "degree in Computer Science"}. I specialize in Python, Exploratory Data Analysis, and building predictive models that solve real-world problems.
-                        </p>
-
+                        <div className="text-secondary text-lg leading-relaxed space-y-4">
+                            {aboutData?.description ? 
+                                aboutData.description.split('\\n\\n').map((paragraph, index) => (
+                                    <p key={index}>{paragraph}</p>
+                                ))
+                                : 
+                                <p>I find passion in extracting meaningful insights from complex datasets. My journey in Data Science and Machine Learning is fueled by a relentless curiosity and a desire to build intelligent systems.</p>
+                            }
+                        </div>
                         <div className="pt-6">
                             <a href="#contact" className="text-emerald-400 hover:text-emerald-300 font-medium flex items-center gap-2 group transition-colors">
                                 Let's build something together

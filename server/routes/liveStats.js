@@ -102,25 +102,41 @@ router.get('/hackerrank/csv', async (req, res) => {
 router.get('/gfg', async (req, res) => {
     try {
         syncGFG().catch(() => { });
+        
+        // Scraping Logic: Fetch GFG profile and extract data from JSON state
+        const gfgRes = await fetch(`https://www.geeksforgeeks.org/user/${GFG_USERNAME}/`, {
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' }
+        });
+        
+        if (gfgRes.ok) {
+            const html = await gfgRes.text();
+            // Target the script tag containing the user data
+            const solvedMatch = html.match(/"total_problems_solved":\s*(\d+)/i);
+            if (solvedMatch && solvedMatch[1]) {
+                return res.json({ solved: parseInt(solvedMatch[1]) });
+            }
+        }
+
+        // Fallback: External API if scraping fails
         const response = await fetch(`https://geeks-for-geeks-api.vercel.app/${GFG_USERNAME}`);
         if (response.ok) {
             const data = await response.json();
-            if (!data.error) {
+            if (!data.error && (data.totalProblemsSolved || data.total_problems_solved)) {
                 return res.json({
-                    solved: data.totalProblemsSolved || data.total_problems_solved || 14,
+                    solved: data.totalProblemsSolved || data.total_problems_solved,
                 });
             }
         }
-        // Fallback
+
+        // Final Fallback: Portfolio Data
         const portfolioData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/portfolio.json'), 'utf-8'));
-        res.json({ solved: portfolioData.coding?.gfg?.solved || 14, note: 'Cached data' });
+        res.json({ 
+            solved: portfolioData.coding?.gfg?.solved || 53, 
+            note: 'Real-time sync unavailable, using latest verified count' 
+        });
     } catch (err) {
-        try {
-            const portfolioData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/portfolio.json'), 'utf-8'));
-            res.json({ solved: portfolioData.coding?.gfg?.solved || 14, note: 'Cached data' });
-        } catch {
-            res.status(500).json({ error: 'Failed to fetch GFG stats' });
-        }
+        console.error('GFG Sync Error:', err.message);
+        res.json({ solved: 53, note: 'Emergency Fallback' });
     }
 });
 
@@ -162,11 +178,15 @@ router.get('/all', async (req, res) => {
     } catch { }
 
     try {
-        const gfgRes = await fetch(`https://geeks-for-geeks-api.vercel.app/${GFG_USERNAME}`);
+        // Direct GFG Scraping for aggregate total
+        const gfgRes = await fetch(`https://www.geeksforgeeks.org/user/${GFG_USERNAME}/`, {
+            headers: { 'User-Agent': 'Mozilla/5.0' }
+        });
         if (gfgRes.ok) {
-            const gfgData = await gfgRes.json();
-            if (!gfgData.error) {
-                results.gfg = { solved: gfgData.totalProblemsSolved || 14 };
+            const html = await gfgRes.text();
+            const solvedMatch = html.match(/"total_problems_solved":\s*(\d+)/i);
+            if (solvedMatch && solvedMatch[1]) {
+                results.gfg = { solved: parseInt(solvedMatch[1]) };
                 results.totalSolved += results.gfg.solved;
             }
         }
@@ -175,7 +195,7 @@ router.get('/all', async (req, res) => {
     if (!results.gfg) {
         try {
             const pd = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/portfolio.json'), 'utf-8'));
-            results.gfg = { solved: pd.coding?.gfg?.solved || 14 };
+            results.gfg = { solved: pd.coding?.gfg?.solved || 53 };
             results.totalSolved += results.gfg.solved;
         } catch { }
     }

@@ -137,12 +137,12 @@ function App() {
         <div className={!welcomeComplete ? "h-screen overflow-hidden" : ""}>
           <ParticleBackground />
           <Navbar theme={theme} toggleTheme={toggleTheme} />
-          <main className="relative z-10">
+          <main>
             <Hero data={data?.hero} />
             <Suspense fallback={<SectionLoader />}>
               <About data={aboutData} />
               <Experience data={data?.experience} />
-              <Skills data={data?.skills} />
+              <Skills data={data?.skills} softSkills={data?.soft_skills} />
               <CodingProfile data={codingData} liveStats={liveStats} />
               <Projects data={data?.projects} />
               <Achievements achievementsData={data?.achievements} certsData={data?.certifications} />

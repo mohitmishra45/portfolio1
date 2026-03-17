@@ -106,7 +106,7 @@ const Hero = ({ data }) => {
                             {/* Main Image Container */}
                             <div className="relative w-full h-full rounded-full p-3 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--card-border)] overflow-hidden shadow-[0_0_50px_rgba(16,185,129,0.15)] group">
                                 <img 
-                                    src={data?.hero?.profileImage || "/assets/images/profile.jpg"} 
+                                    src={data?.profileImage || "/assets/images/profile.jpeg"} 
                                     alt={data?.name} 
                                     className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700 ease-in-out scale-110 group-hover:scale-100"
                                     loading="eager"
@@ -151,7 +151,10 @@ const Hero = ({ data }) => {
                         <a href="https://linkedin.com/in/mohitmishra45" target="_blank" rel="noreferrer" className="hover:text-blue-500 transition-all transform hover:-translate-y-2 hover:scale-110 duration-300">
                             <i className="fab fa-linkedin-in text-3xl"></i>
                         </a>
-                        <a href="mailto:mohit@example.com" className="hover:text-emerald-400 transition-all transform hover:-translate-y-2 hover:scale-110 duration-300">
+                        <a 
+                            href="mailto:mohitmishra9707@gmail.com" 
+                            className="hover:text-emerald-400 transition-all transform hover:-translate-y-2 hover:scale-110 duration-300"
+                        >
                             <i className="fas fa-envelope text-3xl"></i>
                         </a>
                     </div>
